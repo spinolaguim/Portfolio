@@ -1,0 +1,209 @@
+<!doctype html><html lang="pt-BR"><head><title>Guilherme Photography</title><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>/* Layout: sticky gold header with canoe and waves, centered intro text, 3-column photo grid over a faded background photo that is revealed first on load. */
+:root{
+  --wash:#eef3ef;--wash-rgb:238,243,239;--ink:#16302b;--ink-soft:#4a625c;--accent:#17797f;--accent-ink:#fff;--line:#c9d6d0;--card:#f8fbf9;
+  --gold:#d8b36a;--gold-hi:#f1dba5;--gold-lo:#a9812f;--hdr:rgba(9,27,23,.9);--hdr-t:rgba(9,27,23,.72);
+  --font-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--font-body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;--font-brand:'Italiana','Times New Roman',serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--wash:#0f1d1a;--wash-rgb:15,29,26;--ink:#e8f0ec;--ink-soft:#a3b8b0;--accent:#4cc3c8;--accent-ink:#06201f;--line:#2a403a;--card:#14251f;color-scheme:dark}}
+:root[data-theme="dark"]{--wash:#0f1d1a;--wash-rgb:15,29,26;--ink:#e8f0ec;--ink-soft:#a3b8b0;--accent:#4cc3c8;--accent-ink:#06201f;--line:#2a403a;--card:#14251f;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--wash);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));min-height:100vh}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* background photo: shown first, then recedes behind everything */
+.bg{position:fixed;inset:0;z-index:-1;background:url(img/foto14.jpg) 62% 72%/cover no-repeat;animation:bgzoom 3.6s cubic-bezier(.2,.6,.2,1) backwards}
+.bg::after{content:"";position:absolute;inset:0;background:rgba(var(--wash-rgb),.84);animation:wash 1.6s ease 1.3s backwards}
+@keyframes bgzoom{from{transform:scale(1.14)}to{transform:scale(1)}}
+@keyframes wash{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+header,.wrap{animation:rise 1s ease 2.1s backwards}
+.splash{position:fixed;inset:0;z-index:60;display:grid;place-items:center;pointer-events:none;background:radial-gradient(ellipse at center,rgba(6,18,15,.5),rgba(6,18,15,0) 68%);animation:sp 3s ease forwards}
+@keyframes sp{0%,6%{opacity:0}22%{opacity:1}62%{opacity:1}100%{opacity:0;visibility:hidden}}
+.sp-in{text-align:center;padding:16px}
+.sp-name{display:block;font-family:var(--font-brand);font-size:clamp(2.1rem,9vw,5rem);letter-spacing:.28em;padding-left:.28em;color:var(--gold-hi);text-shadow:0 2px 28px rgba(0,0,0,.6);text-transform:uppercase}
+.sp-line{display:block;height:1px;width:0;margin:18px auto 0;background:var(--gold);animation:spl 1.6s ease .5s forwards}
+@keyframes spl{to{width:min(60vw,340px)}}
+html.seen .splash{display:none}
+html.seen .bg,html.seen .bg::after,html.seen header,html.seen .wrap{animation:none}
+
+/* header */
+header{--pad:34px;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background-color:var(--hdr);
+  background-image:radial-gradient(320px circle at var(--mx,-500px) var(--my,50%),rgba(216,179,106,.22),transparent 65%);
+  backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  box-shadow:0 14px 30px -20px rgba(0,0,0,.65);transition:background-color .35s ease}
+header.sm{--pad:12px;background-color:var(--hdr-t)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hdr)}
+.hin{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 30px;padding-block:var(--pad);transition:padding .35s ease}
+.brand{margin-right:auto;display:block;text-decoration:none;line-height:1}
+.brand b{display:flex;font-family:var(--font-brand);font-weight:400;font-size:3.4rem;letter-spacing:.14em;text-transform:uppercase;line-height:1;transition:font-size .35s ease}
+.brand b i{font-style:normal;display:inline-block;color:var(--gold);cursor:default;transition:transform .3s cubic-bezier(.3,1.7,.5,1),color .25s,text-shadow .25s;animation:glint 7s ease-in-out infinite;animation-delay:calc(var(--k)*.16s)}
+.brand b i:hover{transform:translateY(-7px) scale(1.14);color:var(--gold-hi);text-shadow:0 0 20px rgba(241,219,165,.75)}
+@keyframes glint{0%,72%,100%{color:var(--gold)}82%{color:var(--gold-hi);text-shadow:0 0 14px rgba(241,219,165,.5)}}
+header.sm .brand b{font-size:2.3rem}
+nav{display:flex;align-items:center;gap:34px}
+nav a{position:relative;color:#d9e4df;text-decoration:none;font-weight:600;font-size:.84rem;letter-spacing:.22em;text-transform:uppercase;padding-block:8px;transition:color .25s}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .35s ease}
+nav a:hover{color:var(--gold-hi)}
+nav a:hover::after,nav a[aria-current="page"]::after{transform:scaleX(1)}
+nav a[aria-current="page"]{color:var(--gold)}
+nav a.ig{display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 13px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);letter-spacing:.14em;transition:background .25s,color .25s,transform .25s}
+nav a.ig::after{display:none}
+nav a.ig svg{width:17px;height:17px;flex:none}
+nav a.ig:hover{background:var(--gold);color:#1a1405;transform:translateY(-2px)}
+.lang{display:flex;gap:8px;align-items:center}
+.lang button{width:34px;height:24px;padding:0;border:1px solid transparent;border-radius:5px;background:none;cursor:pointer;line-height:0;opacity:.55;transition:opacity .2s,transform .2s,border-color .2s,box-shadow .2s}
+.lang button svg{display:block;width:100%;height:100%;border-radius:4px}
+.lang button:hover{opacity:1;transform:translateY(-2px)}
+.lang button[aria-pressed="true"]{opacity:1;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,179,106,.25)}
+/* sea */
+.sea{position:absolute;left:0;right:0;bottom:-9px;height:18px;pointer-events:none;z-index:2}
+.wv{position:absolute;left:0;right:0;bottom:0;height:18px;background-repeat:repeat-x;background-position:0 50%}
+.wv.a{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='18' viewBox='0 0 70 18'%3E%3Cpath d='M0 9 Q17.5 1 35 9 T70 9' fill='none' stroke='%23d8b36a' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-size:70px 18px;animation:wva 5s linear infinite}
+.wv.b{opacity:.45;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='18' viewBox='0 0 104 18'%3E%3Cpath d='M0 9 Q26 15 52 9 T104 9' fill='none' stroke='%23d8b36a' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");background-size:104px 18px;animation:wvb 8s linear infinite reverse}
+@keyframes wva{to{background-position-x:70px}}
+@keyframes wvb{to{background-position-x:104px}}
+.wake{position:absolute;bottom:8px;height:3px;border-radius:3px;opacity:0;background:linear-gradient(90deg,transparent,rgba(241,219,165,.95))}
+.wake.l{background:linear-gradient(270deg,transparent,rgba(241,219,165,.95))}
+.boat{position:absolute;left:0;bottom:5px;width:88px;height:30px;color:var(--gold);transform-origin:50% 90%;will-change:transform;pointer-events:auto;cursor:pointer}
+.boat svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 100%}
+.boat svg.hop{animation:hop .75s ease}
+@keyframes hop{0%{transform:none}35%{transform:translateY(-16px) rotate(-9deg)}70%{transform:translateY(1px) rotate(5deg)}100%{transform:none}}
+
+/* home */
+.intro{text-align:center;margin:0 auto;padding-block:76px 46px;max-width:740px}
+.intro h1,.pg h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.04;letter-spacing:-.03em;margin:0 0 16px;text-wrap:balance}
+.intro p{margin:0 auto;color:var(--ink-soft);font-size:1.1rem;max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid button{display:block;width:100%;margin:0;padding:0;border:0;background:var(--line);border-radius:3px;overflow:hidden;cursor:zoom-in;aspect-ratio:4/5;position:relative}
+.grid img{display:block;width:100%;height:100%;object-fit:cover;transform:translate3d(0,var(--py,0%),0);scale:1.16;opacity:calc(1 - var(--d,0)*.4);filter:saturate(calc(1 - var(--d,0)*.4));transition:scale .6s ease;will-change:transform}
+.grid button:hover img{scale:1.21}
+.grid button.rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s ease var(--dl,0ms),transform .8s cubic-bezier(.2,.7,.2,1) var(--dl,0ms)}
+.grid button.rv.in{opacity:1;transform:none}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.92rem;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+footer a{color:var(--accent);font-weight:600;text-decoration:none}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(6,14,12,.94);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.lb button{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;width:48px;height:48px;border-radius:50%;font-size:1.5rem;cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.24)}
+.lb .x{top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px))}
+.lb .p{left:max(10px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%)}
+.lb .n{right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%)}
+.lb .c{position:absolute;bottom:max(14px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);color:#cfe0da;font-size:.85rem;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+
+/* inner pages */
+.pg{padding-block:76px 0;text-align:center}
+.pg .lead{color:var(--ink-soft);margin:0 auto 44px;max-width:58ch;font-size:1.08rem}
+.pg h2{font-family:var(--font-display);font-weight:700;font-size:1.6rem;letter-spacing:-.02em;margin:0 0 6px}
+.pg .sub{color:var(--ink-soft);margin:0 auto 28px;max-width:60ch}
+.social{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:860px;margin:0 auto}
+.sn{display:flex;flex-direction:column;align-items:center;gap:10px;padding:30px 18px 24px;border:1px solid var(--gold-lo);border-radius:14px;background:rgba(var(--wash-rgb),.82);backdrop-filter:blur(6px);color:var(--ink);text-decoration:none;min-width:0;transition:transform .3s,background .3s,border-color .3s,color .3s}
+.sn:hover{transform:translateY(-5px);background:#0b1f1b;border-color:var(--gold);color:#e8f0ec}
+.sn .ic{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold-hi),var(--gold));color:#1a1405;display:grid;place-items:center;flex:none}
+.sn .ic svg{width:30px;height:30px}
+.sn .tx{display:grid;gap:2px;justify-items:center;text-align:center;min-width:0}
+.sn b{font-family:var(--font-display);font-size:1.25rem;letter-spacing:-.01em}
+.sn .h{font-size:.92rem;opacity:.8;overflow-wrap:anywhere}
+.sn .go{margin-top:6px;display:inline-block;background:linear-gradient(135deg,var(--gold-hi),var(--gold));color:#1a1405;font:700 .78rem var(--font-body);letter-spacing:.16em;text-transform:uppercase;padding:9px 20px;border-radius:999px}
+.em{max-width:860px;margin:16px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(var(--wash-rgb),.8);backdrop-filter:blur(6px)}
+.em .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.em .v{font-family:var(--font-display);font-weight:600;font-size:1.15rem;overflow-wrap:anywhere;min-width:0}
+.cp{font:inherit;font-size:.86rem;font-weight:600;border:1px solid var(--gold-lo);background:transparent;color:var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer}
+.cp:hover{background:var(--gold);color:#1a1405;border-color:var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;list-style:none;margin:0;padding:0;text-align:left}
+.step{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ph{width:100%;aspect-ratio:9/16;border-radius:10px;border:1.5px dashed var(--gold-lo);background:rgba(var(--wash-rgb),.6);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;color:var(--ink-soft);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.6}
+.step img{width:100%;aspect-ratio:9/16;border-radius:10px;display:block;object-fit:cover}
+.step .t{display:flex;gap:12px;align-items:flex-start}
+.step .no{flex:none;width:34px;height:34px;border-radius:50%;background:#0b1f1b;border:1px solid var(--gold);color:var(--gold-hi);font-family:var(--font-brand);font-size:1.15rem;display:flex;align-items:center;justify-content:center;line-height:1}
+.step h3{margin:0 0 3px;font-size:1.02rem;font-weight:600;line-height:1.3}
+.step p{margin:0;color:var(--ink-soft);font-size:.92rem;line-height:1.5}
+.dl{margin-top:56px;padding:32px 28px;border:1px solid var(--line);border-radius:12px;background:rgba(var(--wash-rgb),.8);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.dl h2{margin:0 0 4px}.dl p{margin:0 auto;color:var(--ink-soft);max-width:46ch;font-size:.95rem}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold-hi),var(--gold));color:#1a1405;font:700 .9rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;padding:15px 28px;border-radius:999px;text-decoration:none;border:0}
+.btn-gold[aria-disabled="true"]{opacity:.55;cursor:not-allowed;filter:grayscale(.3)}
+.btn-gold svg{width:18px;height:18px}
+
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .social{grid-template-columns:1fr;gap:12px}
+  .sn{flex-direction:row;text-align:left;padding:16px;gap:14px}
+  .sn .ic{width:52px;height:52px}.sn .ic svg{width:26px;height:26px}
+  .sn .tx{justify-items:start;text-align:left}.sn .go{margin:0 0 0 auto}
+}
+@media (max-width:520px){
+  header{--pad:14px}header.sm{--pad:9px}
+  .hin{gap:6px 12px}
+  nav{order:3;width:100%;justify-content:space-between;gap:10px}
+  nav a{font-size:.66rem;letter-spacing:.12em}
+  nav a.ig{padding:7px}nav a.ig svg{width:18px;height:18px}nav a.ig span{display:none}
+  .brand b{font-size:clamp(1.35rem,7.4vw,1.9rem);letter-spacing:.08em}header.sm .brand b{font-size:clamp(1.2rem,6.2vw,1.5rem)}
+  .lang{gap:6px}.lang button{width:28px;height:20px}
+  .boat{width:60px;height:21px}
+  .steps{gap:14px}.step p{font-size:.86rem}.dl{padding:22px}
+  .intro,.pg{padding-block-start:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.bg,.bg::after,header,.wrap,.wv,.brand b i{animation:none}.splash{display:none}}
+</style>
+<script>try{if(sessionStorage.getItem('seen'))document.documentElement.classList.add('seen');else sessionStorage.setItem('seen','1')}catch(e){}</script><div class="bg" aria-hidden="true"></div><div class="splash" aria-hidden="true"><div class="sp-in"><span class="sp-name">Spinolagui</span><i class="sp-line"></i></div></div><header id="top"><div class="hin">
+<a class="brand" href="index.html" data-a="aria-label:home_aria" aria-label="spinolagui, photo album, home"><b aria-hidden="true"><i style="--k:0">S</i><i style="--k:1">P</i><i style="--k:2">I</i><i style="--k:3">N</i><i style="--k:4">O</i><i style="--k:5">L</i><i style="--k:6">A</i><i style="--k:7">G</i><i style="--k:8">U</i><i style="--k:9">I</i></b></a>
+<nav data-a="aria-label:nav_aria" aria-label="Main"><a href="index.html" aria-current="page" data-i="nav_album">Album</a><a href="presets.html" data-i="nav_presets">Presets</a><a href="contact.html" data-i="nav_contact">Contact</a><a class="ig" href="https://instagram.com/spinolagui" target="_blank" rel="noopener" data-a="aria-label:ig_aria" aria-label="Instagram @spinolagui (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></nav>
+<div class="lang" role="group" data-a="aria-label:lang_aria" aria-label="Language"><button type="button" data-l="pt" aria-pressed="false" title="Português" aria-label="Português"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#169b45"/><path d="M15 2.4 27.4 10 15 17.6 2.6 10Z" fill="#f7d117"/><circle cx="15" cy="10" r="4.3" fill="#1b4da1"/><path d="M10.8 9.1Q15 7.8 19.2 11" stroke="#fff" stroke-width=".8" fill="none"/></svg></button><button type="button" data-l="en" aria-pressed="false" title="English" aria-label="English"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect y="0.00" width="30" height="1.54" fill="#b22234"/><rect y="3.08" width="30" height="1.54" fill="#b22234"/><rect y="6.15" width="30" height="1.54" fill="#b22234"/><rect y="9.23" width="30" height="1.54" fill="#b22234"/><rect y="12.31" width="30" height="1.54" fill="#b22234"/><rect y="15.38" width="30" height="1.54" fill="#b22234"/><rect y="18.46" width="30" height="1.54" fill="#b22234"/><rect width="13.6" height="10.8" fill="#3c3b6e"/><circle cx="1.8" cy="1.6" r=".55" fill="#fff"/><circle cx="1.8" cy="4.2" r=".55" fill="#fff"/><circle cx="1.8" cy="6.8" r=".55" fill="#fff"/><circle cx="1.8" cy="9.2" r=".55" fill="#fff"/><circle cx="4.4" cy="1.6" r=".55" fill="#fff"/><circle cx="4.4" cy="4.2" r=".55" fill="#fff"/><circle cx="4.4" cy="6.8" r=".55" fill="#fff"/><circle cx="4.4" cy="9.2" r=".55" fill="#fff"/><circle cx="7" cy="1.6" r=".55" fill="#fff"/><circle cx="7" cy="4.2" r=".55" fill="#fff"/><circle cx="7" cy="6.8" r=".55" fill="#fff"/><circle cx="7" cy="9.2" r=".55" fill="#fff"/><circle cx="9.6" cy="1.6" r=".55" fill="#fff"/><circle cx="9.6" cy="4.2" r=".55" fill="#fff"/><circle cx="9.6" cy="6.8" r=".55" fill="#fff"/><circle cx="9.6" cy="9.2" r=".55" fill="#fff"/><circle cx="12" cy="1.6" r=".55" fill="#fff"/><circle cx="12" cy="4.2" r=".55" fill="#fff"/><circle cx="12" cy="6.8" r=".55" fill="#fff"/><circle cx="12" cy="9.2" r=".55" fill="#fff"/></svg></button><button type="button" data-l="es" aria-pressed="false" title="Español" aria-label="Español"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#c60b1e"/><rect y="5" width="30" height="10" fill="#ffc400"/></svg></button></div>
+</div><div class="sea" aria-hidden="true"><i class="wv b"></i><i class="wv a"></i><i class="wake" id="wake"></i><div class="boat" id="boat"><svg viewBox="0 0 64 22" fill="currentColor" aria-hidden="true"><path d="M1 9 Q8 7.5 17 12.5 L47 12.5 Q56 7.5 63 9 Q58 19.5 32 19.5 Q6 19.5 1 9Z"/><path d="M9 14.6 H55" stroke="#0b1f1b" stroke-width="1" opacity=".55" fill="none"/><circle cx="31" cy="4.2" r="2.3"/><path d="M28.3 12.5 L29.2 7.4 Q31 6.4 32.8 7.4 L33.7 12.5Z"/><path d="M36 8 L25.5 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><ellipse cx="24.8" cy="18.8" rx="1.3" ry="2.6" transform="rotate(45 24.8 18.8)"/></svg></div></div></header>
+<div class="wrap">
+<section class="intro"><h1 data-i="intro_h1">Memories and the places I've been.</h1><p data-i="intro_p">A selection of travel photos: beaches, architecture and cities. Tap an image to enlarge.</p></section>
+<main><div class="grid" id="grid"><button type="button" data-n="1" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 1 of 19"><img src="img/foto14-t.jpg" width="733" height="1100" data-n="1" data-a="alt:photo_alt" alt="Photo 1 of the album" loading="eager"></button><button type="button" data-n="2" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 2 of 19"><img src="img/foto13-t.jpg" width="828" height="1100" data-n="2" data-a="alt:photo_alt" alt="Photo 2 of the album" loading="eager"></button><button type="button" data-n="3" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 3 of 19"><img src="img/foto06-t.jpg" width="733" height="1100" data-n="3" data-a="alt:photo_alt" alt="Photo 3 of the album" loading="eager"></button><button type="button" data-n="4" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 4 of 19"><img src="img/foto07-t.jpg" width="827" height="1100" data-n="4" data-a="alt:photo_alt" alt="Photo 4 of the album" loading="eager"></button><button type="button" data-n="5" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 5 of 19"><img src="img/foto17-t.jpg" width="825" height="1100" data-n="5" data-a="alt:photo_alt" alt="Photo 5 of the album" loading="lazy"></button><button type="button" data-n="6" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 6 of 19"><img src="img/foto08-t.jpg" width="733" height="1100" data-n="6" data-a="alt:photo_alt" alt="Photo 6 of the album" loading="lazy"></button><button type="button" data-n="7" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 7 of 19"><img src="img/foto09-t.jpg" width="733" height="1100" data-n="7" data-a="alt:photo_alt" alt="Photo 7 of the album" loading="lazy"></button><button type="button" data-n="8" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 8 of 19"><img src="img/foto04-t.jpg" width="733" height="1100" data-n="8" data-a="alt:photo_alt" alt="Photo 8 of the album" loading="lazy"></button><button type="button" data-n="9" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 9 of 19"><img src="img/foto05-t.jpg" width="733" height="1100" data-n="9" data-a="alt:photo_alt" alt="Photo 9 of the album" loading="lazy"></button><button type="button" data-n="10" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 10 of 19"><img src="img/foto02-t.jpg" width="733" height="1100" data-n="10" data-a="alt:photo_alt" alt="Photo 10 of the album" loading="lazy"></button><button type="button" data-n="11" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 11 of 19"><img src="img/foto03-t.jpg" width="733" height="1100" data-n="11" data-a="alt:photo_alt" alt="Photo 11 of the album" loading="lazy"></button><button type="button" data-n="12" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 12 of 19"><img src="img/foto15-t.jpg" width="733" height="1100" data-n="12" data-a="alt:photo_alt" alt="Photo 12 of the album" loading="lazy"></button><button type="button" data-n="13" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 13 of 19"><img src="img/foto18-t.jpg" width="733" height="1100" data-n="13" data-a="alt:photo_alt" alt="Photo 13 of the album" loading="lazy"></button><button type="button" data-n="14" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 14 of 19"><img src="img/foto19-t.jpg" width="733" height="1100" data-n="14" data-a="alt:photo_alt" alt="Photo 14 of the album" loading="lazy"></button><button type="button" data-n="15" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 15 of 19"><img src="img/foto01-t.jpg" width="733" height="1100" data-n="15" data-a="alt:photo_alt" alt="Photo 15 of the album" loading="lazy"></button><button type="button" data-n="16" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 16 of 19"><img src="img/foto12-t.jpg" width="733" height="1100" data-n="16" data-a="alt:photo_alt" alt="Photo 16 of the album" loading="lazy"></button><button type="button" data-n="17" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 17 of 19"><img src="img/foto16-t.jpg" width="825" height="1100" data-n="17" data-a="alt:photo_alt" alt="Photo 17 of the album" loading="lazy"></button><button type="button" data-n="18" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 18 of 19"><img src="img/foto10-t.jpg" width="733" height="1100" data-n="18" data-a="alt:photo_alt" alt="Photo 18 of the album" loading="lazy"></button><button type="button" data-n="19" data-t="19" data-a="aria-label:enlarge" aria-label="Enlarge photo 19 of 19"><img src="img/foto11-t.jpg" width="825" height="1100" data-n="19" data-a="alt:photo_alt" alt="Photo 19 of the album" loading="lazy"></button></div></main>
+<footer><span>© 2026 Guilherme</span><a href="contact.html" data-i="foot_contact">Get in touch →</a></footer>
+</div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" data-a="aria-label:lb_label" aria-label="Enlarged photo" hidden>
+<img id="lbimg" alt=""><button class="x" id="lbx" data-a="aria-label:lb_close" aria-label="Close">×</button><button class="p" id="lbp" data-a="aria-label:lb_prev" aria-label="Previous photo">‹</button><button class="n" id="lbn" data-a="aria-label:lb_next" aria-label="Next photo">›</button><div class="c" id="lbc"></div></div><script>(function(){var T={"en": {"nav_album": "Album", "nav_presets": "Presets", "nav_contact": "Contact", "nav_aria": "Main", "home_aria": "spinolagui, photo album, home", "ig_aria": "Instagram @spinolagui (opens in a new tab)", "lang_aria": "Language", "intro_h1": "Memories and the places I've been.", "intro_p": "A selection of travel photos: beaches, architecture and cities. Tap an image to enlarge.", "foot_contact": "Get in touch →", "foot_album": "← View album", "foot_q": "Questions? Get in touch →", "photo_alt": "Photo {n} of the album", "enlarge": "Enlarge photo {n} of {t}", "lb_label": "Enlarged photo", "lb_close": "Close", "lb_prev": "Previous photo", "lb_next": "Next photo", "c_h1": "Let's talk about photos.", "c_lead": "For quotes, partnerships, or to request a photo from the album in high resolution, choose whichever channel is easiest for you.", "c_open": "Open", "c_email": "Email", "copy": "Copy", "copied": "Copied", "c_wa_aria": "Open WhatsApp in a new tab", "c_ig_aria": "Open Instagram in a new tab", "c_tt_aria": "Open TikTok in a new tab", "p_h1": "My presets for Lightroom", "p_lead": "Soft texture, brightness emerging between the lights, and slightly shifted colors. Install them on your phone and bring my style to your own photos.", "p_h2": "How to install on Lightroom mobile", "p_sub": "Follow the 6 steps below. Works with photos and files already on your phone.", "ph": "Step {n} photo", "ph_aria": "Space for the step {n} photo", "s1t": "Download the presets to your phone", "s1d": "Tap the download button at the bottom of this page. If the file comes zipped (.zip), extract it first, because Lightroom cannot open compressed files.", "s2t": "Open a photo in Lightroom", "s2d": "In the Lightroom app, tap any photo in your library to open it in the editing view.", "s3t": "Open Presets", "s3d": "In the toolbar, tap Presets.", "s4t": "Import the file", "s4d": "Open the options menu (the three dots) and tap Import Presets.", "s5t": "Choose the file", "s5d": "Find the presets file you downloaded, select it and confirm.", "s6t": "Apply it to your photo", "s6d": "Your presets appear under Yours. Tap one to apply it and adjust the intensity as you like.", "dl_h": "Download the presets", "dl_p": "The download link will be available here soon. Once downloaded, go back to the steps above to install them.", "dl_btn": "Coming soon"}, "pt": {"nav_album": "Álbum", "nav_presets": "Presets", "nav_contact": "Contatos", "nav_aria": "Principal", "home_aria": "spinolagui, álbum de fotos, início", "ig_aria": "Instagram @spinolagui (abre em nova aba)", "lang_aria": "Idioma", "intro_h1": "Memórias e lugares por onde passei.", "intro_p": "Uma seleção de fotos de viagem: praias, arquitetura e cidades. Toque em uma imagem para ampliar.", "foot_contact": "Fale comigo →", "foot_album": "← Ver álbum", "foot_q": "Dúvidas? Fale comigo →", "photo_alt": "Foto {n} do álbum", "enlarge": "Ampliar foto {n} de {t}", "lb_label": "Foto ampliada", "lb_close": "Fechar", "lb_prev": "Foto anterior", "lb_next": "Próxima foto", "c_h1": "Vamos conversar sobre fotos.", "c_lead": "Para orçamentos, parcerias ou para pedir uma foto do álbum em alta resolução, escolha o canal que for mais fácil para você.", "c_open": "Abrir", "c_email": "E-mail", "copy": "Copiar", "copied": "Copiado", "c_wa_aria": "Abrir o WhatsApp em nova aba", "c_ig_aria": "Abrir o Instagram em nova aba", "c_tt_aria": "Abrir o TikTok em nova aba", "p_h1": "Meus presets para Lightroom", "p_lead": "Textura suave, claridade surgindo entre as luzes e cores levemente alteradas. Instale no seu celular e aplique o meu estilo nas suas fotos.", "p_h2": "Como instalar no Lightroom mobile", "p_sub": "Siga os 6 passos abaixo. Funciona com as fotos e os arquivos já no seu celular.", "ph": "Foto do passo {n}", "ph_aria": "Espaço para a foto do passo {n}", "s1t": "Baixe os presets no celular", "s1d": "Toque no botão de download no fim desta página. Se o arquivo vier compactado (.zip), extraia antes, porque o Lightroom não abre arquivos compactados.", "s2t": "Abra uma foto no Lightroom", "s2d": "No aplicativo Lightroom, toque em qualquer foto da sua galeria para abri-la na tela de edição.", "s3t": "Abra as Predefinições", "s3d": "Na barra de ferramentas, toque em Predefinições (Presets).", "s4t": "Importe o arquivo", "s4d": "Abra o menu de opções (os três pontinhos) e toque em Importar predefinições (Import Presets).", "s5t": "Escolha o arquivo", "s5d": "Procure o arquivo dos presets que você baixou, selecione e confirme.", "s6t": "Aplique na sua foto", "s6d": "Os presets ficam em Suas predefinições (Yours). Toque em um deles para aplicar e ajuste a intensidade como quiser.", "dl_h": "Baixar os presets", "dl_p": "O link de download será liberado aqui em breve. Depois de baixar, volte aos passos acima para instalar.", "dl_btn": "Em breve"}, "es": {"nav_album": "Álbum", "nav_presets": "Presets", "nav_contact": "Contacto", "nav_aria": "Principal", "home_aria": "spinolagui, álbum de fotos, inicio", "ig_aria": "Instagram @spinolagui (se abre en una pestaña nueva)", "lang_aria": "Idioma", "intro_h1": "Recuerdos y lugares por los que he pasado.", "intro_p": "Una selección de fotos de viaje: playas, arquitectura y ciudades. Toca una imagen para ampliarla.", "foot_contact": "Escríbeme →", "foot_album": "← Ver álbum", "foot_q": "¿Dudas? Escríbeme →", "photo_alt": "Foto {n} del álbum", "enlarge": "Ampliar foto {n} de {t}", "lb_label": "Foto ampliada", "lb_close": "Cerrar", "lb_prev": "Foto anterior", "lb_next": "Foto siguiente", "c_h1": "Hablemos de fotos.", "c_lead": "Para presupuestos, colaboraciones o para pedir una foto del álbum en alta resolución, elige el canal que te resulte más fácil.", "c_open": "Abrir", "c_email": "Correo electrónico", "copy": "Copiar", "copied": "Copiado", "c_wa_aria": "Abrir WhatsApp en una pestaña nueva", "c_ig_aria": "Abrir Instagram en una pestaña nueva", "c_tt_aria": "Abrir TikTok en una pestaña nueva", "p_h1": "Mis presets para Lightroom", "p_lead": "Textura suave, claridad que surge entre las luces y colores ligeramente alterados. Instálalos en tu móvil y aplica mi estilo a tus propias fotos.", "p_h2": "Cómo instalar en Lightroom móvil", "p_sub": "Sigue los 6 pasos de abajo. Funciona con las fotos y archivos que ya tienes en tu móvil.", "ph": "Foto del paso {n}", "ph_aria": "Espacio para la foto del paso {n}", "s1t": "Descarga los presets en tu móvil", "s1d": "Toca el botón de descarga al final de esta página. Si el archivo viene comprimido (.zip), extráelo primero, porque Lightroom no abre archivos comprimidos.", "s2t": "Abre una foto en Lightroom", "s2d": "En la app de Lightroom, toca cualquier foto de tu biblioteca para abrirla en la pantalla de edición.", "s3t": "Abre los ajustes preestablecidos", "s3d": "En la barra de herramientas, toca Ajustes preestablecidos (Presets).", "s4t": "Importa el archivo", "s4d": "Abre el menú de opciones (los tres puntos) y toca Importar ajustes preestablecidos (Import Presets).", "s5t": "Elige el archivo", "s5d": "Busca el archivo de presets que descargaste, selecciónalo y confirma.", "s6t": "Aplícalo a tu foto", "s6d": "Tus presets aparecen en Tuyos (Yours). Toca uno para aplicarlo y ajusta la intensidad como quieras.", "dl_h": "Descargar los presets", "dl_p": "El enlace de descarga estará disponible aquí pronto. Cuando lo descargues, vuelve a los pasos de arriba para instalarlos.", "dl_btn": "Próximamente"}}
+var L='en';
+function fmt(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o&&o[k]!=null?o[k]:m})}
+window.__t=function(k,o){return fmt((T[L]&&T[L][k])||T.en[k]||k,o)};
+window.__lang=function(){return L};
+function apply(){document.documentElement.lang=L==='pt'?'pt-BR':L;
+document.querySelectorAll('[data-i]').forEach(function(e){e.textContent=window.__t(e.dataset.i,e.dataset)});
+document.querySelectorAll('[data-a]').forEach(function(e){e.dataset.a.split(',').forEach(function(p){var kv=p.split(':');e.setAttribute(kv[0],window.__t(kv[1],e.dataset))})});
+document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===L?'true':'false')});
+document.dispatchEvent(new Event('langchange'))}
+function set(l,save){L=l;if(save){try{localStorage.setItem('lang',l)}catch(e){}}apply()}
+var s=null;try{s=localStorage.getItem('lang')}catch(e){}
+if(!T[s]){var n=((navigator.language||'en')+'').slice(0,2).toLowerCase();s=(n==='pt'||n==='es')?n:'en'}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.l,true)})});
+set(s,false);
+})();</script><script>(function(){
+var F=["img/foto14.jpg", "img/foto13.jpg", "img/foto06.jpg", "img/foto07.jpg", "img/foto17.jpg", "img/foto08.jpg", "img/foto09.jpg", "img/foto04.jpg", "img/foto05.jpg", "img/foto02.jpg", "img/foto03.jpg", "img/foto15.jpg", "img/foto18.jpg", "img/foto19.jpg", "img/foto01.jpg", "img/foto12.jpg", "img/foto16.jpg", "img/foto10.jpg", "img/foto11.jpg"],i=0,lb=document.getElementById('lb'),im=document.getElementById('lbimg'),c=document.getElementById('lbc'),last=null;
+function show(k){i=(k+F.length)%F.length;im.src=F[i];im.alt=window.__t('photo_alt',{n:i+1});c.textContent=(i+1)+' / '+F.length}
+function open(k,el){last=el;show(k);lb.hidden=false;document.getElementById('lbx').focus();document.body.style.overflow='hidden'}
+function close(){lb.hidden=true;document.body.style.overflow='';if(last)last.focus()}
+document.getElementById('grid').addEventListener('click',function(e){var b=e.target.closest('button');if(b)open(+b.dataset.n-1,b)});
+document.getElementById('lbx').onclick=close;document.getElementById('lbp').onclick=function(){show(i-1)};document.getElementById('lbn').onclick=function(){show(i+1)};
+lb.addEventListener('click',function(e){if(e.target===lb)close()});
+document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
+document.addEventListener('langchange',function(){if(!lb.hidden)show(i)});
+var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+lb.addEventListener('touchend',function(e){if(sx===null)return;var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(i+(d<0?1:-1));sx=null});
+})();</script><script>(function(){
+var bs=[].slice.call(document.querySelectorAll('#grid button')),vh=window.innerHeight,tick=false;
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+bs.forEach(function(b,k){b.style.setProperty('--dl',((k%3)*110)+'ms');if(b.getBoundingClientRect().top>vh*0.92)b.classList.add('rv')});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -4% 0px'});bs.forEach(function(b){if(b.classList.contains('rv'))io.observe(b)})}else{bs.forEach(function(b){b.classList.remove('rv')})}
+function f(){vh=window.innerHeight;bs.forEach(function(b){var r=b.getBoundingClientRect();if(r.bottom<-100||r.top>vh+100)return;var c=r.top+r.height/2,rel=(c-vh/2)/vh,d=Math.min(1,Math.abs(rel)/0.55);d=d*d;var im=b.firstChild;im.style.setProperty('--py',(-rel*9).toFixed(2)+'%');im.style.setProperty('--d',d.toFixed(3))});tick=false}
+f();window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f)}},{passive:true});window.addEventListener('resize',f);
+})();</script><script>(function(){var h=document.getElementById('top'),hin=h.querySelector('.hin'),boat=document.getElementById('boat'),wake=document.getElementById('wake'),svg=boat.querySelector('svg'),calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,p=0,cur=null,tilt=0,t0=performance.now(),lo=0,hi=0;
+function y(){return window.pageYOffset||document.documentElement.scrollTop||0}
+function onS(){var v=y(),m=document.documentElement.scrollHeight-window.innerHeight;p=m>0?Math.min(1,Math.max(0,v/m)):0;h.classList.toggle('sm',v>40)}
+function meas(){var r=hin.getBoundingClientRect();lo=r.left;hi=Math.max(r.left,r.right-boat.offsetWidth);if(cur===null)cur=lo}
+function tick(now){var tg=lo+p*(hi-lo),vel=tg-cur;cur+=vel*(calm?1:.09);var sp=Math.abs(vel),tl=Math.max(-9,Math.min(9,-vel*.3));tilt+=(tl-tilt)*.15;var t=(now-t0)/1000,by=calm?0:Math.sin(t*1.7)*1.8,rot=calm?0:Math.sin(t*1.2)*2.4;boat.style.transform='translate3d('+cur.toFixed(1)+'px,'+by.toFixed(2)+'px,0) rotate('+(tilt+rot).toFixed(2)+'deg)';
+var w=Math.min(110,sp*4.5),bw=boat.offsetWidth;wake.style.opacity=calm?0:Math.min(.9,sp/9).toFixed(2);wake.style.width=w.toFixed(0)+'px';if(vel>0){wake.classList.remove('l');wake.style.left=(cur+bw*.22-w).toFixed(1)+'px'}else{wake.classList.add('l');wake.style.left=(cur+bw*.78).toFixed(1)+'px'}requestAnimationFrame(tick)}
+boat.addEventListener('click',function(){svg.classList.remove('hop');void svg.getBoundingClientRect();svg.classList.add('hop')});
+h.addEventListener('mousemove',function(e){var r=h.getBoundingClientRect();h.style.setProperty('--mx',(e.clientX-r.left)+'px');h.style.setProperty('--my',(e.clientY-r.top)+'px')});
+h.addEventListener('mouseleave',function(){h.style.setProperty('--mx','-500px')});
+meas();onS();window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',function(){meas();onS()});window.addEventListener('load',meas);requestAnimationFrame(tick)})();</script>
+
+</body></html>
